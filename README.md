@@ -13,12 +13,20 @@
 * we used node to run the server 
 * we used frame work : Express JS as simple way to start with the sarver 
 * then we start to do node package manager initialization
-* then we used the listting commande on spacific port  
+* then we used the listening commande on spacific port -3000 
 
 * we learn to sendback data using JSON data 
+* I created web app to check the movies details
+* then i used the 3rd party API for the required data
+* I add the Trinding movies list and search by name and i added 2 extra for the new comming movies and most popular movies for task 12 
+
 
 ## WRRC
 ***This a hand draw WRRC***
+* this is the updated for task 12
+![link](./image/WRRC%202.jpeg)
+
+* this is the WRRC for task 11
 ![link](./image/WRRC.jpeg)
 
 ***This the project files***
