@@ -20,10 +20,16 @@
 * then i used the 3rd party API for the required data
 * I add the Trinding movies list and search by name and i added 2 extra for the new comming movies and most popular movies for task 12 
 *  i created data base for clints to add move that he want to remmember with some details 
+* after we created the data base and the client can add his favorite movies and get it any time he want 
+* I add CRUD to the app so the client can update any movie he want , delete from data base and get any movie by id he want
 
 
 ## WRRC
+
 ***This a hand draw WRRC***
+* this is the WRRC for task 14 
+![link](./image/WRRC%20CRUD.jpeg)
+
 *this is the updated for task 13 
 ![link](./image/WRRC3.jpeg)
 * this is the updated for task 12
