@@ -32,8 +32,14 @@ app.get("/trending",handleTrending)
 app.get("/search",handleSearch)
 app.get("/newComingMovies",handlenewComingMovies )
 app.get("/popular",handlePopular)
+app.put("/UPDATE/:Id",handleUpdate)
+app.delete("/DELETE/:Id",handleDelet)
+app.get("/getMovie/:Id",handelGetfromdata)
 app.use('*', handleErorr) 
 app.use(handleErr500)
+
+
+
 
 ///data base app
 // app.post("/addMovie",handleAdd)
@@ -41,12 +47,52 @@ app.use(handleErr500)
 
 ///// data base function 
 
+function handleUpdate (req,res){
+    console.log(req.params)
+    // res.send("hlooooowe")
+    const Id=req.params.Id;
+    const { id,title, review, duration, parts } = req.body;
+    let sql= `UPDATE Movies SET id=$1, title=$2, review=$3, duration=$4, parts=$5 WHERE id=$6 RETURNING *;`
+    let value=[id,title, review, duration, parts,Id]
+    client.query(sql,value).then((result)=>{
+        console.log(result.rows);
+        res.status(201).json(result.rows[0]);
+    }).catch()
+}
+function handleDelet (req,res){
+    let sql = `DELETE FROM Movies WHERE id=$1;`
+    const Id=req.params.Id
+    let value=[Id]
+    client.query(sql,value).then(result=>{
+        res.send(`deleted successfully,the Movies with Id: ${Id} ^_^ `);
+    }).catch()
+    
+
+}
+
+function handelGetfromdata (req,res){
+    console.log(req.params)
+    // res.send("hlooooowe")
+    const Id=req.params.Id
+    
+    let sql= `SELECT * FROM Movies WHERE id=$1;`
+    let value=[Id]
+    client.query(sql,value).then((result)=>{
+        console.log(result.rows);
+        res.json(result.rows[0]);
+    }).catch()
+}
+
+
+
+
+
 function handleAdd (req,res){
     console.log(req.body)
     // res.send("hlooooowe")
-    const { title, review, duration, parts } = req.body;
-    let sql= `INSERT INTO Movies(title, review, duration, parts) VALUES($1,$2,$3,$4)RETURNING*;`
-    let value=[title, review, duration, parts]
+    const { id,title, review, duration, parts } = req.body;
+    let sql= `INSERT INTO Movies(id,title, review, duration, parts) VALUES($1,$2,$3,$4,$5)RETURNING*;`
+    let value=[id,title, review, duration, parts]
     client.query(sql,value).then((result)=>{
         console.log(result.rows);
         return res.status(201).json(result.rows[0]);
